@@ -1,4 +1,4 @@
-\documentclass[conference,twocolumn]{IEEEtran} % use larger type; default would be 10pt
+\documentclass[conference,twocolumn]{IEEEtran}
 
 \usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
 
@@ -8,19 +8,29 @@
 \usepackage{amsmath}
 
 \begin{document}
-
-\title{Here is the title}
+% TODO: Better title
+\title{Improved Proxy Cooperative Awareness Message: Mix of Infrastructure and Non-Infrastructure Assisted V2V Messaging}
 \author{
-  \IEEEauthorblockN{Li Xin}
-  \IEEEauthorblockA{Graduate School of Information Science and Technology\\
-  The University of Tokyo\\
-  lucus@hongo.wide.ad.jp}
+  \IEEEauthorblockN{Li Xin, Tao Ye, Manabu Tsukada}
+  \IEEEauthorblockA{Graduate School of Information Science and Technology, The University of Tokyo \\
+  {lucus, tydus, taukada}@hongo.wide.ad.jp}
 }
 
 \maketitle
 
 \begin{abstract}
-Here is the abstract
+Cooperative Intelligent Transportation Systems
+(CITS) are being developed to make road traffic safer and more efficient.
+Vehicle to vehicle (V2V) communication plays an important role for the cooperative
+awareness of vehicles in all the CITS standards in EU, US, and Japan.
+Essentially the CITS application relies on the exchanged data by V2V messages (called Cooperative Awareness Message (CAM) in EU).
+In our previous work, we have presented an infrastructure-based system to overcome the 2 significant problems:
+1) mixed environment and 2) obstacle interference.
+But the previous design still relies on infrastructure, hence it is still constrained by the environment.
+Moreover, large vehicles on road could be obstacles for sensors and even wireless communications.
+To solve these problems, we propose the system called Improved Proxy CAM.
+It could be installed on large vehicles and infrastructure to generate or relay the necessary V2V messages.
+We design the system based on standardized ITS architecture in ISO/ETSI, and it could be easily adapted to other ITS architectures.
 \end{abstract}
 
 \begin{IEEEkeywords}
