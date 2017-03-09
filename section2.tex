@@ -1,7 +1,26 @@
 \section{Related works} \label{sec:related_works}
 
-Here is the section 2.
+In CITS, vehicles frequently broadcast a message containing its status to its surrounding ITS-Ss.
+This message is standardized as CAM  in EU by ETSI.
+CAMs are messages exchanged in the ITS network between ITS-Ss to create and maintain awareness of each other
+and to support the cooperative performance of vehicles using the road network.
+A CAM contains status and attributes information of the originating ITS-S.
+The content varies depending on the type of the ITS-S.
+For vehicles the status information includes time, position, motion state, activated systems,
+etc. and the attribute information includes data about the dimensions,
+vehicle type, and role in the road traffic, etc.
+On reception of a CAM, the receiving ITS-S becomes aware of the presence, type, and status of the originating ITS-S.
+The received information can be used by the receiving ITS-S to support several ITS applications.
+For example, the CAM can represent the originating vehicle, upon receiving a CAM,
+we usually store the information in Local Dynamic Map (LDM).
 
-\subsection{Subsection}
+An LDM is a facility in CITS.
+It stores the information of on road objects.
+Such as surrounding vehicles and pedestrians or traffic lights.
+The information maintained by LDM could be accessed by other ITS applications to assist the driver or facilitate autonomous driving.
 
-Here is the subsection.
+Japan Metropolitan Police Department has developed Driving Safety Support Systems (DSSS) to reduce accident.
+DSSS is an infrastructure-based system using FM broadcast and deployed to the highways in Japan.
+
+In our previous work, we have proposed an infrastructure-bases Proxy CAM to overcome the unstable V2V communication under some environments.
+We use roadside units (RSUs) to sense non-ITS objects, and generate CAMs for them, then broadcast to surrounding road users.
