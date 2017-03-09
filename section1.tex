@@ -25,8 +25,33 @@ Other CITS architectures besides ETSI standard have similar designs to provide s
 The information to be exchanged for cooperative awareness is picked up in the periodically transmitted Cooperative Awareness Message (CAM).
 This service is a mandatory facility for all kind of ITS-Stations (ITS-S).
 The dissemination of CAMs may vary depending on the applied communication system.
-But in most cases, CAMs are sent by the originating ITS-S to all ITS-Ss within the direct communication range.
+But in most cases, CAMs are sent by the originating ITS-S to all ITS-Ss within the direct communication range,
+and should not be relayed further.
 
-\subsection{Subsection}
+Single hop broadcast is one of the fundamental techniques for Cooperative Awareness service in CTIS.
+Thanks to it, drivers or autonomous vehicles can achieve a broader view.
+But deployment is hard, we cannot retire all current non-ITS vehicles at once.
+Despite the deployment, the messages could suffer interferences caused by other obstacles such as buildings and large vehicles.
+Also, the view of sensors could be blocked.
 
-Here is the subsection~\cite{kitazato2016proxy}.
+In our previous work, we have proposed a Proxy CAM system,
+using roadside infrastructure to generate the necessary V2V messages for the sender vehicles and non-ITS vehicles.
+But such system is still limited by the environment.
+The objective of the paper is to improve the Proxy CAM by utilizing large vehicles or the obstacles themselves.
+To overcome these issues,
+the proposed system called Improved Proxy CAM generates CAMs for non-ITS vehicles and road users with installed sensors to sensing them.
+Meanwhile, relay the CAMs sent from surrounding vehicles, when it could interfere the V2V communication.
+Currently, such design is working in progress, we present a preliminary design in this paper.
+
+The contributions of this work are:
+\begin{itemize}
+\item Analysis of potential interference of large vehicles
+\item Proposal of platform for infrastructure-free assisted CA service
+\end{itemize}
+
+The rest of the paper is organized as follows.
+Section~\ref{sec:related_works} highlights the related works.
+Section~\ref{sec:problem} analyzes the issues of V2V communications and our previous work, Proxy CAM,
+then summarizes the requirements of the solution.
+Section~\ref{sec:iproxy_cam} presents the system design.
+Finally, Section~\ref{sec:conclusion} concludes this paper.
