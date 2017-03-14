@@ -11,25 +11,34 @@ The current preliminary design is described in this section.
 
 \subsection{System design}
 
-Fig 1 shows the overview of the system design.
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{figures/exProxyCAM.eps}
+        \caption{System design}
+        \label{fig:system_design}
+    \end{center}
+\end{figure}
+
+Figure~\ref{fig:system_design} shows the overview of the system design.
 Our previous work is limited to RSU, but the new design should also be applicable to moving vehicles, such as large trucks.
 
 ITS enabled vehicles are usually equipped with sensors to detect the pedestrian
-and other vehicles or objects in the surrounding within the visual field.
+and other vehicles or objects in its surrounding within the visual field.
 Then record the data in LDM.
 When the system is deployed on vehicles, we can utilize the LDM instead of harvesting data directly from sensors.
 
 For those non-ITS enabled road users,
-we can directly use the objects from LDM to generate CAMs for them.
+we can directly use the information from LDM to generate CAMs for them.
 Then the system broadcasts the generated CAMs to its surrounding ITS-Ss.
 Upon receiving the CAMs, we can process the message just like normal CAMs,
 storing the information into their own LDMs.
 
 For those ITS enabled road users,
-from which the CAMs could suffer serious loss due to the large vehicle with this system deployed,
-things could be a little complex. First, upon receiving the CAM, we need to check the plausibility of it,
-using similar techniques described in Section 2, to ensure the sender is not a malicious one.
-Only if it passed the plausibility check, the intermediate vehicle, as shown in Fig 1,
+when the CAMs could suffer serious loss due to the large vehicle or other kinds of obstacles with this system deployed,
+the system should relay the CAMs in a manner described as follows.
+First, upon the obstacles receiving the CAM, we need to check the plausibility of it,
+using similar techniques described in Section~\ref{sec:related_works}, to ensure the sender is not a malicious one.
+Only if it passed the plausibility check, the intermediate vehicle, as shown in Figure~\ref{fig:system_design},
 should append its signature and public key to the CAM, then relay the CAM to its surrounding vehicles.
 
 In the following sections, we describe the system in detail.
@@ -48,7 +57,7 @@ we should assign an ID connected with it to the corresponding object in LDM.
 Otherwise, a random ID is assigned.
 Object tracking techniques should be used to ensure that we assign the same object with the same ID.
 
-As shown in Fig 1, when the truck B recognize a walking man with its sensors,
+As shown in Figure~\ref{fig:system_design}, when the truck B recognize a walking man with its sensors,
 which is apparently a non-ITS enabled road user,
 it firstly records the data into its LDM and assigned a random ID to it.
 Vehicle C cannot perceive the existence of this walking man because truck B blocks the view of its sensors.
@@ -60,10 +69,10 @@ truck B constantly tracks the walking man, and update the information in its LDM
 
 \subsubsection{CA relay}
 
-We use CA relay to overcome the issue described in Section 3,
+We use CA relay to overcome the issue described in Section~\ref{sec:problem},
 large vehicles could interfere the V2V wireless communications, resulting in CAMs losses.
 CA relay is used to relay the CAMs from surrounding vehicles to surrounding vehicles.
-As shown in Fig 1,
+As shown in Figure~\ref{fig:system_design},
 the V2V communication between vehicle A and vehicle C could suffer serious loss due to the truck B blocking the signal.
 Under such scenario, it could be dangerous if vehicle C decide to overtake truck B from behind.
 We use the truck B as an intermediate station to relay the CAMs from vehicle A.
@@ -76,8 +85,16 @@ Upon receiving a relayed CAM, the receiver should firstly check the signature of
 then it should conduct a plausibility check if the intermediate node is a vehicle.
 Only if the CAM passed all checks, we can consider the CAM is a valid one.
 
+\begin{figure}[htbp]
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{figures/crossroad.eps}
+        \caption{Crossroad scenario}
+        \label{fig:crossroad}
+    \end{center}
+\end{figure}
+
 Such system should also be applicable to RSUs.
-Fig 2 describes a scenario which is common in Japan,
+Figure~\ref{fig:crossroad} describes a scenario which is common in Japan~\cite{tsugawa2011current},
 in where some streets are narrow, and the buildings block the view at crossroads.
 Drivers always have to stop at each crossroad to ensure it is safe to pass.
 Even with ITS, the V2V communication still could be blocked by the buildings.
@@ -87,7 +104,7 @@ the vehicle could have a better perception of other vehicles.
 \subsection{Considerations}
 
 Currently, this design is still not completed yet.
-To overcome the issued and meet the requirements described in Section 3,
+To overcome the issued and meet the requirements described in Section~\ref{sec:problem},
 there are some considerations as follows.
 \begin{enumerate}
 \item When deployed on vehicles,
