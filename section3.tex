@@ -1,33 +1,38 @@
 \section{Problem statement} \label{sec:problem}
-In the last two section, we introduced the CITS standard and its limitation on the Cooperative Awareness subsystem.
-Then we recalled our previous proposed Proxy CAM system employd on roadside units.
+
+Our previous proposed Proxy CAM system can be employd on roadside units,
+to help those non-ITS enabled vehicles to perform a cooperative awarness.
 However this system design still left different issues unsolved.
 This section will analyze the issues deeply and state additional requirements while solving the issues.
 
 \subsection{Issues}
 % Not working without RSU
-In the original design of Proxy CAM system, only Road-side Units (RSUs) are permitted to transmit proxied CAM messages.
+In the original design of Proxy CAM system, only Road-side Units (RSUs) are permitted to transmit proxied CAMs.
 Thus, the largest limitation of the Proxy CAM system is the dependency on RSUs.
 
 % Deployment
 In practice, several shortcomings on deployment should be considered.
-Firstly, percepting vehicles requires dedicated hardwares to be deployed on the RSUs: ITS routers, sensors including cameras, lidars, etc.
+Firstly, percepting vehicles requires dedicated hardwares to be deployed on the RSUs:
+ITS routers, sensors including cameras, lidars, etc.
 Additionally, deployment of these hardwares in different environment brings extra challenges.
-To summarize, deployment difficulties could result in a huge stress to the relevant departments for both cost and other resources, and the cost of maintenance will increase as well.
+To summarize, deployment difficulties could result in a huge stress to the relevant departments for both cost and other resources,
+and the cost of maintenance will increase as well.
 
 % View coverage & Signal blocking
-Moreover, even on the crossroads with Proxy CAM RSU deployed, preception and communication problems may still happen.
-Large vehicles (buses, trucks, etc.) could block the view of sensor and even block 802.11 signal, which may lead to a false-negative perception and cause trouble.
+Moreover, even on the crossroads with Proxy CAM RSU deployed,
+preception and communication problems may still happen.
+Large vehicles (buses, trucks, etc.) could block the view of sensor and even block the V2V or V2I communications~\cite{d2014empirical},
+which may lead to a false-negative perception and cause trouble.
 
 We did a preliminary experiment on a highway in Tokyo.
 TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
-
 \subsection{Requirements}
-The Proxy CAM system maintained the standard compatibility by sending the proxy CAM message in the destination vehicle's behavior.
+
+The Proxy CAM system maintained the standard compatibility by sending the proxied CAMs in the destination vehicle's behavior.
 Since the Proxy CAM system is only employed on managed Road-Side Units, the information security issues are not considered.
 
-Contrastly, in the new system, the Proxy CAM generator could be deployed on the vehicles, thus the authoritativeness cannot be ensured.
+Contrastly, in the new system, the Extended Proxy CAM generator could be deployed on the vehicles, thus the authoritativeness cannot be ensured.
 This may lead to a dilemma: how to ensure the information security while maintain standard compatibility.
 
 % Standard compatibility
@@ -35,8 +40,7 @@ TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
 
 % Information Security
 The Extended Proxy CAM requires some vehicles along with the RSUs to send the Proxy CAM message, i.e. mocking another vehicle.
-For an instance, a malicious node could easily insert ghost vehicles on other vehicles' LDM by sending fake Proxy CAM messages, which could cause serious security crisis.
+For an instance, a malicious node could easily insert ghost vehicles on other vehicles' LDM by sending fake proxied CAMs, which could cause serious security crisis.
 
-ITS standard defines a PKI-based trust model. However it relies on certification revocation, thus could not take effect in real-time.
+ETSI ITS standard defines a PKI-based trust model~\cite{etsi2013103}. However it relies on certification revocation, thus could not take effect in real-time.
 A real-time trust model should be developed for the Extended Proxy CAM system to ensure the potential attacker could not easily break the system.
-
