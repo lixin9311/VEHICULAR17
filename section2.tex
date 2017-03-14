@@ -1,7 +1,7 @@
 \section{Related works} \label{sec:related_works}
 
 In CITS, vehicles frequently broadcast a message containing its status to its surrounding ITS-Ss.
-This message is standardized as CAM  in EU by ETSI.
+This message is standardized as CAM  in EU by ETSI~\cite{etsi2014302}.
 CAMs are messages exchanged in the ITS network between ITS-Ss to create and maintain awareness of each other
 and to support the cooperative performance of vehicles using the road network.
 A CAM contains status and attributes information of the originating ITS-S.
@@ -14,13 +14,25 @@ The received information can be used by the receiving ITS-S to support several I
 For example, the CAM can represent the originating vehicle, upon receiving a CAM,
 we usually store the information in Local Dynamic Map (LDM).
 
-An LDM is a facility in CITS.
-It stores the information of on road objects.
+An LDM is a key facility in CITS~\cite{etsi2014302895}.
+It stores and maintains the information of on objects which could influence or be influenced by road traffic.
 Such as surrounding vehicles and pedestrians or traffic lights.
 The information maintained by LDM could be accessed by other ITS applications to assist the driver or facilitate autonomous driving.
 
-Japan Metropolitan Police Department has developed Driving Safety Support Systems (DSSS) to reduce accident.
+Japan Metropolitan Police Department has developed Driving Safety Support Systems (DSSS) to reduce accident~\cite{yamamoto2006aichi}.
 DSSS is an infrastructure-based system using FM broadcast and deployed to the highways in Japan.
 
-In our previous work, we have proposed an infrastructure-bases Proxy CAM to overcome the unstable V2V communication under some environments.
-We use roadside units (RSUs) to sense non-ITS objects, and generate CAMs for them, then broadcast to surrounding road users.
+Automated vehicles require a reliable perception of the surrounding vehicles and objects in order to make safe and good decisions.
+Using V2V communication such as CA service to exchange location and status data to
+each other can improve the perception range beyond the capabilities of on-board sensors (e.g. millimeter-wave radar, lidar, cameras).
+However, it is vital to ensure the date is not malicious when CITS is deployed~\cite{amoozadeh2015security}.
+ETSI has standardized a PKI-based security mechanism~\cite{etsi2013103},
+other ITS standards also have similar cryptographic models to protect the exchange and authenticity of the data,
+but not guarantee the correctness of the content.
+Some sensor based plausibility check mechanisms are proposed to ensure the CA data can be trusted~\cite{obst2014multi}~\cite{dhurandher2014vehicular}.
+They use sensors to detect those vehicles and compare the position with the information contained in CAMs from them, to validate the plausibility of CAMs.
+
+The performance of V2V and V2I messages strongly depends on the link quality and propagation conditions~\cite{shagdar2012experimentation}.
+Under some scenarios, the CAMs could suffer serious loss.
+In our previous work~\cite{kitazato2016proxy}, we have proposed an infrastructure-bases Proxy CAM to overcome the unstable V2V communication under some environments.
+We use roadside units (RSUs) to detect non-ITS objects, and generate CAMs for them, then broadcast to surrounding road users.
