@@ -4,8 +4,8 @@ To solve the problem described in Section~\ref{sec:problem},
 we extended our previous work.
 The new design is called Extended Proxy CAM.
 We want to make the system compatible with original CA service,
-but due to some security reason, the compatibility is still under pursuit.
-The new WIP design is based on the ETSI standard ITS,
+but due to some security reasons, the compatibility with standard CAM is still under pursuit.
+In spite of the fact that the new design is based on the ETSI standard ITS,
 it should be easy to apply this design to other ITS standards.
 The current preliminary design is described in this section.
 
@@ -24,22 +24,22 @@ Our previous work is limited to RSU, but the new design should also be applicabl
 
 ITS enabled vehicles are usually equipped with sensors to detect the pedestrian
 and other vehicles or objects in its surrounding within the visual field.
-Then record the data in LDM.
-When the system is deployed on vehicles, we can utilize the LDM instead of harvesting data directly from sensors.
+Then record the data in its LDM.
+When the system is deployed on vehicles, we can utilize the data directly from the LDM instead of harvesting raw data from sensors.
 
 For those non-ITS enabled road users,
-we can directly use the information from LDM to generate CAMs for them.
+we can directly use the information from the LDM to generate CAMs for them.
 Then the system broadcasts the generated CAMs to its surrounding ITS-Ss.
-Upon receiving the CAMs, we can process the message just like normal CAMs,
+Upon receiving the CAMs, we can process the messages just like normal CAMs,
 storing the information into their own LDMs.
 
 For those ITS enabled road users,
-when the CAMs could suffer serious loss due to the large vehicle or other kinds of obstacles with this system deployed,
+when the CAMs could suffer interference due to the large vehicle or other kinds of obstacles with this system deployed,
 the system should relay the CAMs in a manner described as follows.
 First, upon the obstacles receiving the CAM, we need to check the plausibility of it,
 using similar techniques described in Section~\ref{sec:related_works}, to ensure the sender is not a malicious one.
-Only if it passed the plausibility check, the intermediate vehicle, as shown in Figure~\ref{fig:system_design},
-should append its signature and public key to the CAM, then relay the CAM to its surrounding vehicles.
+Only if it passes the plausibility check, the intermediate vehicle, as shown in Figure~\ref{fig:system_design},
+appends its signature and public key to the CAM, then relays the CAM to its surrounding vehicles.
 
 In the following sections, we describe the system in detail.
 The whole system can be split into two part, CAM generator, and CA relay.
@@ -49,41 +49,41 @@ The whole system can be split into two part, CAM generator, and CA relay.
 The CAM generator generates the necessary CAMs for those non-ITS enabled road users.
 It is based on our previous work. Because our new design could be deployed to vehicles,
 we could save sensors if the system is installed on a vehicle.
-The system could use the data in LDM on the vehicle to provide more detailed information (lane position, car type, etc.).
-It's easy to distinguish those non-ITS enabled vehicles in LDM.
-Additionally, we can generate CAMs for other on road objects which could endanger the road traffic.
+The system could use the data in the LDM on the vehicle to provide more detailed information (lane position, car type, etc.).
+Additionally, we can generate CAMs for other on-road objects which could endanger the road traffic.
 If we could identify the vehicle's ID from sensors,
-we should assign an ID connected with it to the corresponding object in LDM.
+we should assign an ID connected with it to the corresponding object in the LDM.
 Otherwise, a random ID is assigned.
 Object tracking techniques should be used to ensure that we assign the same object with the same ID.
 
-As shown in Figure~\ref{fig:system_design}, when the truck B recognize a walking man with its sensors,
+As shown in Figure~\ref{fig:system_design}, when the truck B recognize a pedestrian with its sensors,
 which is apparently a non-ITS enabled road user,
 it firstly records the data into its LDM and assigned a random ID to it.
-Vehicle C cannot perceive the existence of this walking man because truck B blocks the view of its sensors.
-Then the CAM encoder on truck B collect the information from its LDM to generate CAM for this walking man,
+Vehicle C cannot perceive the existence of this pedestrian because truck B blocks the view of its sensors.
+Then the CAM encoder on truck B collect the information from its LDM to generate CAM for this pedestrian,
 then broadcast the CAM to its surrounding vehicles.
-Therefore, vehicle C knows there is a collision risk with the walking man if it overtakes truck B.
+Therefore, vehicle C knows there is a collision risk with the pedestrian if it overtakes truck B.
 At the same time, with object tracking techniques,
-truck B constantly tracks the walking man, and update the information in its LDM. 
+truck B constantly tracks the pedestrian, and update the information in its LDM,
+then broadcasts the generated CAMs containing the updated information to its surrounding vehicles.
 
 \subsubsection{CA relay}
 
-We use CA relay to overcome the issue described in Section~\ref{sec:problem},
-large vehicles could interfere the V2V wireless communications, resulting in CAMs losses.
+We use CA relay to overcome the issues described in Section~\ref{sec:problem},
+large vehicles could interfere with the V2V wireless communications, resulting in CAM losses.
 CA relay is used to relay the CAMs from surrounding vehicles to surrounding vehicles.
 As shown in Figure~\ref{fig:system_design},
 the V2V communication between vehicle A and vehicle C could suffer serious loss due to the truck B blocking the signal.
-Under such scenario, it could be dangerous if vehicle C decide to overtake truck B from behind.
+Under such scenario, it could be dangerous if vehicle C decides to overtake truck B from behind.
 We use the truck B as an intermediate station to relay the CAMs from vehicle A.
 Upon truck B receiving CAM from vehicle A, it firstly conducts a plausibility check,
 to ensure the CAM is not from a malicious sender.
-If passed the check,
-it should sign-off the CAM using its own private key and append its public key to the CAM then broadcast the signed CAM.
+If it passes the plausibility check,
+the intermediate vehicle should sign-off the CAM using its own private key and append its public key to the CAM then broadcast the new signed CAM.
 
 Upon receiving a relayed CAM, the receiver should firstly check the signature of the message,
 then it should conduct a plausibility check if the intermediate node is a vehicle.
-Only if the CAM passed all checks, we can consider the CAM is a valid one.
+Only if the CAM passed all checks, we could consider the CAM is a valid one.
 
 \begin{figure}[htbp]
     \begin{center}
@@ -96,8 +96,8 @@ Only if the CAM passed all checks, we can consider the CAM is a valid one.
 Such system should also be applicable to RSUs.
 Figure~\ref{fig:crossroad} describes a scenario which is common in Japan~\cite{tsugawa2011current},
 in where some streets are narrow, and the buildings block the view at crossroads.
-Drivers always have to stop at each crossroad to ensure it is safe to pass.
-Even with ITS, the V2V communication still could be blocked by the buildings.
+Drivers always have to stop at each crossroad to ensure it is safe before pass.
+Even with ITS, the V2V communications still could be blocked by the buildings.
 If we place some RSUs with our system on each side of the crossroad and connect them to each other to generate and relay the CAM,
 the vehicle could have a better perception of other vehicles.
 
@@ -105,6 +105,7 @@ the vehicle could have a better perception of other vehicles.
 
 Currently, this design is still not completed yet.
 To overcome the issues and achieve the requirements described in Section~\ref{sec:problem}, there are some considerations as follows.
+
 \begin{enumerate}
 \item To improve the security of this system,
     when deployed on vehicles,
