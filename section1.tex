@@ -1,28 +1,34 @@
 \section{Introduction} \label{sec:intro}
 
 Road transportation is an essential part of human daily life.
-Intelligent Transportation Systems (ITS) is designed to improve the road traffic by achieving safe,
-efficient and autonomous transportation.
+Intelligent Transportation Systems (ITS) is designed to improve the road traffic by achieving safer,
+more efficient and autonomous transportation.
 Cooperative ITS and vehicular communication are found essential to the
 cooperation of on-road vehicles and other forms of transport and pedestrians,
 whereby sensor information is shared between road users to,
 in effect, extend a driver’s field of vision.
 Cooperative ITS can not only be used to provide driver assistance with the not so distant future
-but also to feed more data to full autonomous driving.
+but also it could provide more data to fully autonomous driving.
 
 International Organization for Standardization (ISO) Technical Committee 204 (ISO / TC 204)
 is responsible for the overall system aspects and infrastructure aspects of intelligent transport systems (ITS).
 And Working Group 18 (ISO/TC 204/WG 18) of it is responsible for Cooperative systems.
 Also in Europe, the European Telecommunications Standards Institute (ETSI) has standardized wireless communication and applications of ITS.
 In the US, the Institute of Electrical and Electronics Engineers (IEEE) has standardized Wireless Access
-in Vehicular Environments (WAVE) architecture in IEEE 1609 family of standards and IEEE802.11p.
+in Vehicular Environments (WAVE) architecture in IEEE 1609 family of standards and IEEE802.11p for vehicular wireless communications.
 
-ETSI has standardized a Cooperative Awareness (CA) Basic Service to inform each road user about other's position, dynamics, and attributes.
+Cooperative awareness within road traffic means that road users and
+roadside infrastructure are informed about each other's position, dynamics and attributes.
+Road users are all kind of road vehicles like cars, trucks, motorcycles, bicycles or even pedestrians
+and roadside infrastructure equipment including road signs, traffic lights or barriers and gates.
 The awareness of each other is the basis for several road safety and traffic efficiency applications.
-It is achieved by regular exchange of information among vehicles and between vehicles (V2V)
+
+ETSI has standardized a Cooperative Awareness (CA) Basic Service to inform each road user about the information of others.
+It is achieved by a regular exchange of information among vehicles (V2V) and between vehicles
 and road side infrastructure (V2I and I2V) based on wireless networks.
+The message to be exchanged for cooperative awarenessm which contains the essential information,
+is called Cooperative Awareness Message (CAM).
 Other CITS architectures besides ETSI standard have similar designs to provide such function.
-The information to be exchanged for cooperative awareness is picked up in the periodically transmitted Cooperative Awareness Message (CAM).
 This service is a mandatory facility for all kind of ITS-Stations (ITS-S).
 The dissemination of CAMs may vary depending on the applied communication system.
 But in most cases, CAMs are sent by the originating ITS-S to all ITS-Ss within the direct communication range,
@@ -36,20 +42,14 @@ Such non-ITS vehicles and road users could not send CAMs for themselves.
 Despite the deployment, the messages could suffer interferences caused by other obstacles such as buildings and large vehicles.
 Also, the view of sensors could be blocked.
 
-In our previous work~\cite{kitazato2016proxy}, we have proposed a Proxy CAM system,
-using roadside infrastructure to generate the necessary V2V messages for the non-ITS vehicles.
+In our previous work, we have proposed a Proxy CAM system,
+using roadside infrastructure to generate the necessary V2V messages for the non-ITS vehicles~\cite{kitazato2016proxy}.
 But such system is still limited by the environment, it requires infrastructure devices.
 The objective of the paper is to improve the Proxy CAM by utilizing large vehicles or the obstacles themselves.
 The proposed system, called Extended Proxy CAM,
 generates CAMs for non-ITS vehicles and road users with installed sensors to sensing them.
 Meanwhile, relay the CAMs sent from surrounding vehicles, when the large vehicles with such system could interfere the V2V communications.
 Currently, such design is working in progress, we present a preliminary design in this paper.
-
-The contributions of this work are:
-\begin{itemize}
-\item Analysis of potential interference of large vehicles
-\item Proposal of platform for infrastructure-free assisted CA service
-\end{itemize}
 
 The rest of the paper is organized as follows.
 Section~\ref{sec:related_works} highlights the related works.
