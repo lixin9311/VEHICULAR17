@@ -22,8 +22,14 @@ and the cost of maintenance will increase as well.
 Moreover, even on the crossroads with Proxy CAM RSU deployed,
 preception and communication problems may still happen.
 Large vehicles (buses, trucks, etc.) could block the view of sensor and even block the V2V or V2I communications~\cite{d2014empirical}.
-The signal of 802.11p could be reflected by the metal surface of vehicles~\cite{mecklenbrauker2011vehicular}.
+The signal of 802.11p could be reflected by the metal surface of vehicles,
+that leads to a serious loss of CAMs and V2V communications~\cite{mecklenbrauker2011vehicular}.
+In scenarios like shown in Figure~\ref{fig:system_design},
+the vehicle C may not receive CAMs from vehicle A,
+and it also cannot see vehicle A and the pedestrian with its on-board sensors, due to the block of truck B.
+Under such situation, overtaking truck B is a dangerous option,which vehicle C may make without perception of vehicle A and the pedestrian.
 It may lead to a false-negative perception and cause trouble.
+We should consider such scenarios.
 
 \subsection{Requirements}
 
@@ -33,12 +39,10 @@ Since the Proxy CAM system is only employed on managed Road-Side Units, the info
 Contrastly, in the new system, the Extended Proxy CAM generator could be deployed on the vehicles, thus the authoritativeness cannot be ensured.
 This may lead to a dilemma: how to ensure the information security while maintain standard compatibility.
 
-% Standard compatibility
-TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-
 % Information Security
 The Extended Proxy CAM requires some vehicles along with the RSUs to send the Proxy CAM message, i.e. mocking another vehicle.
 For an instance, a malicious node could easily insert ghost vehicles on other vehicles' LDM by sending fake proxied CAMs, which could cause serious security crisis.
+Also, it should be prooft to man-in-the-middle (MITM) attacks, or playback attacks.
 
 ETSI ITS standard defines a PKI-based trust model~\cite{etsi2013103}. However it relies on certification revocation, thus could not take effect in real-time.
 A real-time trust model should be developed for the Extended Proxy CAM system to ensure the potential attacker could not easily break the system.
