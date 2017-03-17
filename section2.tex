@@ -18,7 +18,7 @@ vehicle type, and role in the road traffic, etc.
 On reception of a CAM, the receiving ITS-S becomes aware of the presence, type, and status of the originating ITS-S.
 The received information can be used by the receiving ITS-S to support several ITS applications.
 For example, the CAM can represent the originating vehicle, upon receiving a CAM,
-we usually store the information in Local Dynamic Map (LDM).
+we usually store the information in the Local Dynamic Map (LDM).
 
 The LDM is a key facility in ITS~\cite{etsi2014302895}.
 It stores and maintains the information of on objects which could influence or be influenced by road traffic.
@@ -39,6 +39,6 @@ Some sensor based plausibility check mechanisms are proposed to ensure the CA da
 They use sensors to detect those vehicles and compare the position with the information contained in CAMs from them, to validate the plausibility of CAMs.
 
 The performance of V2V and V2I messages strongly depends on the link quality and propagation conditions~\cite{shagdar2012experimentation}.
-Under some scenarios, the CAMs could suffer serious loss.
+Under certain scenarios, the CAMs could suffer serious loss.
 In our previous work~\cite{kitazato2016proxy}, we have proposed an infrastructure-bases Proxy CAM to overcome the unstable V2V communication under some environments.
 We use roadside units (RSUs) to detect non-ITS objects, and generate CAMs for them, then broadcast to surrounding road users.
